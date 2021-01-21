@@ -89,12 +89,12 @@ Once started, there won't be an actual proxy running until you create a new prox
 
 or optionally specify your own port:
 
-    [~]$ curl -X POST -d 'port=8089' http://localhost:8080/proxy
+    [~]$ curl -X POST -d '{"port":8089}' http://localhost:8080/proxy
     {"port":8089}
 
 or if running BrowserUp Proxy in a multi-homed environment, specify a desired bind address (default is `0.0.0.0`):
 
-    [~]$ curl -X POST -d 'bindAddress=192.168.1.222' http://localhost:8080/proxy
+    [~]$ curl -X POST -d '{"bindAddress":"192.168.1.222"}' http://localhost:8080/proxy
     {"port":8086}
 
 Once that is done, a new proxy will be available on the port returned. All you have to do is point a browser to that proxy on that port and you should be able to browse the internet. The following additional APIs will then be available:
@@ -132,7 +132,7 @@ For example, once you've started the proxy you can create a new HAR to start rec
 
     [~]$ curl -X PUT -d 'initialPageRef=Foo' http://localhost:8080/proxy/8081/har
 
-Now when traffic goes through port 9091 it will be attached to a page reference named "Foo". Consult the HAR specification for more info on what a "pageRef" is. You can also start a new pageRef like so:
+Now when traffic goes through port 8081 it will be attached to a page reference named "Foo". Consult the HAR specification for more info on what a "pageRef" is. You can also start a new pageRef like so:
 
     [~]$ curl -X PUT -d 'pageRef=Bar' http://localhost:8080/proxy/8081/har/pageRef
 
